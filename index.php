@@ -4,6 +4,7 @@
     $result= query("SELECT * FROM project");
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -54,10 +55,11 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                <th scope="col">No</th>
-                <th scope="col">Judul</th>
-                <th scope="col">Deskripsi</th>
-                <th scope="col">Teknologi</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col">Teknologi</th>
+                    <th scope="col" class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,13 +68,14 @@
                     <th scope="row"><?= $i; ?></th> 
                     <td><a href="<?= $row["link"] ?>" class="text-dark"><?= $row["title"]; ?></a></td> 
                     <td><?= $row["description"]; ?></td> 
-                    <td><?= $row["tech"]; ?></td> 
+                    <td><?= $row["tech"]; ?></td>
+                    <td class="text-center"><a href="#" class="btn btn-success">Ubah</a> <a href="hapus.php?id=<?= $row["id"]; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus project ini?')">Hapus</a></td>
                 </tr>
                 <?php $i++; endforeach; ?>
             </tbody>
         </table>
 
-        <a href="http://localhost/project1/tambahProject.php">Tambah Project Baru</a>
+        <a href="tambahProject.php">Tambah Project Baru</a>
 
     </div>
   </body>

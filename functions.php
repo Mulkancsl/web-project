@@ -12,3 +12,28 @@ function query($query) {
     }
     return $rows;
 }
+
+function tambahProject($data) {
+    global $conn;
+
+    $judul = htmlspecialchars($data["judul"]);
+    $deskripsi = htmlspecialchars($data["deskripsi"]);
+    $teknologi = htmlspecialchars($data["teknologi"]);
+    $link = htmlspecialchars($data["link"]);
+
+    $query = "INSERT INTO project VALUES ('', '$judul', '$deskripsi', '$teknologi', '$link')";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id) {
+    global $conn;
+
+    $query = "DELETE FROM project WHERE id = $id";
+    
+    mysqli_query($conn, $query);
+    
+    return mysqli_affected_rows($conn);
+}

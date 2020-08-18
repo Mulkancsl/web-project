@@ -1,3 +1,29 @@
+<?php
+
+    require "functions.php";
+
+    if( isset($_POST["submit"]) ) {
+    
+        if( tambahProject($_POST) > 0 ) {
+            echo "
+                <script>
+                    alert('Alhamdulilah, Project baru berhasil ditambahkan!');
+                    document.location.href = 'http://localhost/project1';
+                </script>
+            ";
+        } else {
+            echo "
+                <script>
+                    alert('Maaf, Project baru gagal ditambahkan!');
+                    document.location.href = 'http://localhost/project1';
+                </script>
+            ";
+        }
+
+    }
+
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -40,30 +66,38 @@
     <div class="container">
 
         <h1>Halaman Tambah Project</h1>
-        <a href="http://localhost/project1/">Kembali</a>
+        <a href="http://localhost/project1">Kembali</a>
         <br>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6"> 
-                    <form action="" method="">
-                        <label for="judul">Title</label>
-                        <input type="text" class="form-control mb-3" name="judul" id="judul">
-                        <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <select class="form-control form-control-sm mb-3">
-                            <option selected value"">Pilih Bahasa Pemrograman</option>
-                            <option>C</option>
-                            <option>C++</option>
-                            <option>C#</option>
-                            <option>Dart</option>
-                            <option>Java</option>
-                            <option>Javascript</option>
-                            <option>PHP</option>
-                            <option>Ruby</option>
-                        </select>
-                        <label for="link">Masukkan Link Project</label>
-                        <input type="text" class="form-control mb-3" name="link" id="link">
-                        <button type="button" class="btn btn-dark btn-block">Dark</button>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="judul">Title</label>
+                            <input type="text" class="form-control mb-3" name="judul" id="judul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="deskripsi" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select name="teknologi" class="form-control form-control-sm mb-3" required>
+                                <option selected disabled>Pilih Bahasa Pemrograman</option>
+                                <option>C</option>
+                                <option>C++</option>
+                                <option>C#</option>
+                                <option>Dart</option>
+                                <option>Java</option>
+                                <option>Javascript</option>
+                                <option>PHP</option>
+                                <option>Ruby</option>
+                            </select>
+                        </div>
+                        <div class="form-gruop">
+                            <label for="link">Masukkan Link Project</label>
+                            <input type="text" class="form-control mb-3" name="link" id="link" required>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-dark btn-block">Dark</button>
                     </form>
                 </div>
             </div>
