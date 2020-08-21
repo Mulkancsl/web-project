@@ -66,15 +66,16 @@
                 <?php $i = 1; foreach ($result as $row ) : ?>
                 <tr>
                     <th scope="row"><?= $i; ?></th> 
-                    <td><a href="<?= $row["link"] ?>" class="text-dark"><?= $row["title"]; ?></a></td> 
-                    <td><?= $row["description"]; ?></td> 
+                    <td><a href="<?= $row["link"] ?>" target="_blank" class="text-dark"><?= $row["title"]; ?></a></td> 
+                    <td><?= $row["deskripsi"]; ?></td> 
                     <td><?= $row["tech"]; ?></td>
-                    <td class="text-center"><a href="#" class="btn btn-success">Ubah</a> <a href="hapus.php?id=<?= $row["id"]; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus project ini?')">Hapus</a></td>
+                    <td class="text-center"><a href="ubah.php?id=<?= $row["id"]; ?>"" class="btn btn-success">Ubah</a> <a href="hapus.php?id=<?= $row["id"]; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus project ini?')">Hapus</a></td>
                 </tr>
                 <?php $i++; endforeach; ?>
             </tbody>
         </table>
-
+        
+        <a href="#"></a>
         <a href="tambahProject.php">Tambah Project Baru</a>
 
     </div>

@@ -2,24 +2,27 @@
 
     require "functions.php";
 
+    $id = $_GET["id"];
+    
+    $row = query("SELECT * FROM project WHERE id = $id") [0];
+
     if( isset($_POST["submit"]) ) {
     
-        if( tambahProject($_POST) > 0 ) {
+        if( ubah($_POST) > 0 ) {
             echo "
                 <script>
-                    alert('Alhamdulilah, Project baru berhasil ditambahkan!');
+                    alert('Alhamdulilah, Project berhasil diubah!');
                     document.location.href = 'http://localhost/project1';
                 </script>
             ";
         } else {
             echo "
                 <script>
-                    alert('Maaf, Project baru gagal ditambahkan!');
+                    alert('Maaf, Project gagal diubah!');
                     document.location.href = 'http://localhost/project1';
                 </script>
             ";
         }
-
     }
 
 ?>
@@ -28,7 +31,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Home
+    <title>Halaman Ubah
     </title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -65,23 +68,24 @@
     </nav>
     <div class="container">
 
-        <h1>Halaman Tambah Project</h1>
+        <h1>Halaman Ubah Project</h1>
         <a href="http://localhost/project1">Kembali</a>
         <br>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6"> 
                     <form action="" method="post">
+                        <input type="hidden" name="id" value="<?= $row["id"] ?>">
                         <div class="form-group">
                             <label for="judul">Title</label>
-                            <input type="text" class="form-control mb-3" name="judul" id="judul" required>
+                            <input type="text" class="form-control mb-3" name="judul" id="judul" value="<?= $row["title"] ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="deskripsi">Description</label>
-                            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="deskripsi" rows="3" required></textarea>
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="deskripsi" rows="3 " required><?= $row["deskripsi"] ?></textarea>
                         </div>
                         <div class="form-group">
-                            <select name="teknologi" class="form-control form-control-sm mb-3" required>
+                            <select name="teknologi" class="form-control form-control-sm mb-3" ?>" required>
                                 <option selected disabled>Pilih Bahasa Pemrograman</option>
                                 <option>C</option>
                                 <option>C++</option>
@@ -95,9 +99,9 @@
                         </div>
                         <div class="form-gruop">
                             <label for="link">Masukkan Link Project</label>
-                            <input type="text" class="form-control mb-3" name="link" id="link" required>
+                            <input type="text" class="form-control mb-3" name="link" id="link" value="<?= $row["link"] ?>" required>
                         </div>
-                        <button type="submit" name="submit" class="btn btn-dark btn-block">Dark</button>
+                        <button type="submit" name="submit" class="btn btn-dark btn-block">Ubah</button>
                     </form>
                 </div>
             </div>

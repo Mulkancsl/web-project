@@ -37,3 +37,25 @@ function hapus($id) {
     
     return mysqli_affected_rows($conn);
 }
+
+function ubah($data) {
+    global $conn;
+
+    $id = $data["id"];
+    $judul = htmlspecialchars($data["judul"]);
+    $deskripsi = htmlspecialchars($data["deskripsi"]);
+    $teknologi = htmlspecialchars($data["teknologi"]);
+    $link = htmlspecialchars($data["link"]);
+
+    $query = "UPDATE project SET 
+                title = '$judul', 
+                deskripsi = '$deskripsi', 
+                tech = '$teknologi', 
+                link = '$link'
+            WHERE id = $id
+        ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
